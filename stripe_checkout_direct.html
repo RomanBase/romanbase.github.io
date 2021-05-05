@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+             var url = new URL(window.location);
+          var apiKey = url.searchParams.get("apiKey");
+          var sessionId = url.searchParams.get("sessionId");
+        var stripe = Stripe(apiKey);
+
+        stripe.redirectToCheckout({
+              sessionId: sessionId
+        }).then(function (result) {
+              result.error.message = 'Error'
+        });
+    });
+  </script>
+</body>
+</html>
